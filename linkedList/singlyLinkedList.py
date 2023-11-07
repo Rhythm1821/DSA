@@ -20,3 +20,25 @@ class SLL:
             temp.next=n
         else:
             self.start=n
+    def search(self,data):
+        temp=self.start
+        while temp is not None:
+            if temp.item==data:
+                return temp
+            temp=temp.next
+        return None
+    def insert_after(self,temp,data):
+        if temp is not None:
+            n=Node(data,temp.next)
+            temp.next=n
+    def print_list(self):
+        temp=self.start
+        while temp is not None:
+            print(temp.item)
+            temp=temp.next
+
+mylist=SLL()            
+mylist.insert_at_start(10)
+mylist.insert_at_last(100)
+mylist.insert_after(mylist.search(10),50)
+mylist.print_list()
