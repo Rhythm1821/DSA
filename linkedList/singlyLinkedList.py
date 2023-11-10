@@ -36,6 +36,19 @@ class SLL:
         while temp is not None:
             print(temp.item)
             temp=temp.next
+    def delete_first(self):
+        if self.start is not None:
+            self.start=self.start.next
+    def delete_last(self):
+        if self.start is None:
+            pass
+        elif self.start.next is None:
+            self.start=None
+        else:
+            temp=self.start
+            while temp.next is not None:
+                temp = temp.next
+            temp.next=None
 
 mylist=SLL()            
 mylist.insert_at_start(10)
