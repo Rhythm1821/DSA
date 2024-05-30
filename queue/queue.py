@@ -156,7 +156,7 @@ print(q1.get_rear())
 
 """
 class Deque:
-    def __init__(self) -> None:
+    def __init__(self):
         self.items = []
 
     def is_empty(self):
@@ -190,6 +190,85 @@ class Deque:
     
     def size(self):
         return len(self.items)
+    
+d1=Deque()
+d1.insert_front(10)
+d1.insert_front(20)
+d1.insert_rear(30)
+d1.insert_rear(40)
+print(d1.get_front(), d1.get_rear())
+"""
+
+
+# Deque using doubly linked list
+"""
+class Node:
+    def __init__(self,prev=None,item=None,next=None):
+        self.prev=prev
+        self.item=item
+        self.next=next
+
+class Deque:
+    def __init__(self):
+        self.front=None
+        self.rear=None
+        self.count=0
+    
+    def is_empty(self):
+        return self.front==None
+    
+    def insert_front(self,data):
+        n=Node(prev=None,item=data,next=self.front)
+        if self.is_empty():
+            self.rear=n
+        else:
+            self.front.prev=n
+        self.front=n
+        self.count+=1
+
+    def insert_rear(self,data):
+        n=Node(prev=self.rear,item=data,next=None)
+        if self.is_empty():
+            self.front=n
+        else:
+            self.rear.next=n
+        self.rear=n
+        self.count+=1
+
+    def delete_front(self):
+        if self.is_empty():
+            raise "Deque is empty"
+        elif self.front==self.rear:
+            self.front=None 
+            self.rear=None 
+        else:
+            self.front=self.front.next
+            self.front.prev=None
+        self.count-=1
+
+    def delete_rear(self):
+        if self.is_empty():
+            raise "Deque is empty"
+        elif self.front==self.rear:
+            self.front=None 
+            self.rear=None 
+        else:
+            self.rear=self.rear.prev
+            self.rear.next=None
+        self.count-=1
+
+    def get_rear(self):
+        if self.is_empty():
+            raise "Deque is empty"
+        return self.rear.item
+
+    def get_front(self):
+        if self.is_empty():
+            raise "Deque is empty"
+        return self.front.item
+    
+    def size(self):
+        return self.count
     
 d1=Deque()
 d1.insert_front(10)
